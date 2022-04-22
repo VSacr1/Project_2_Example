@@ -4,5 +4,6 @@ import random
 
 @app.route('/get_character',methods=['GET'])
 def name(): 
-    class_choice = ["Tiefling", "Human", "Orc", "Elf", "Aasamar" ]
-    event_name = random.choice(class_choice)
+    character_choice = ["Tiefling", "Human", "Orc", "Elf", "Aasamar" ]
+    character_name = random.choice(character_choice)
+    return Response(f"{character_name}", mimetype="text/plain")
