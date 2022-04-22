@@ -1,22 +1,22 @@
 version: "3.8"
 services: 
   nginx: 
-    container_name: nginx 
-    image: ngnix:alpine
-    port: 
+    container_name: nginx_1
+    image: nginx:latest
+    ports: 
     - target: 80
       published: 80
       protocol: tcp
-    network: 
-    - example-network
+    volumes: 
+    - type: bind 
+      source: ./nginx.conf
+      target: /etc/nginx/nginx.conf
     depends_on: 
     - front-end 
 
   front-end: 
-    container_name: front-end
-    build: ./front-end 
-    network:
-    - example-network
+    container_name: front_end_api
+    build: ./front_end_api
     depends_on: 
     - character_api
     - class_api 
@@ -24,11 +24,9 @@ services:
   character_api: 
     container_name: character_api
     build: ./character_api
-    networks: 
-    - example-network
+
 
   class_api:
     container_name: class_api 
     build: ./class_api 
-    network:
-    - example-network
+    

@@ -1,4 +1,4 @@
-from application import app
+from application import app 
 from flask import Flask, requests, render_template, url_for 
 
 
