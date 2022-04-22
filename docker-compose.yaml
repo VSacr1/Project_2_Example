@@ -1,0 +1,34 @@
+version: "3.8"
+services: 
+  nginx: 
+    container_name: nginx 
+    image: ngnix:alpine
+    port: 
+    - target: 80
+      published: 80
+      protocol: tcp
+    network: 
+    - example-network
+    depends_on: 
+    - front-end 
+
+  front-end: 
+    container_name: front-end
+    build: ./front-end 
+    network:
+    - example-network
+    depends_on: 
+    - character_api
+    - class_api 
+
+  character_api: 
+    container_name: character_api
+    build: ./character_api
+    networks: 
+    - example-network
+
+  class_api:
+    container_name: class_api 
+    build: ./class_api 
+    network:
+    - example-network
